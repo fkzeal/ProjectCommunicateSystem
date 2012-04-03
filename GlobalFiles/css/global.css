@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document */
+
+#nav-user-name
+{
+	margin-top:10px;
+	padding-top:10px;
+}
+/*=====set nav===============*/
+nav
+{	
+	display:block;	
+	overflow:hidden;	
+	height:65px;
+	/*border:solid 1px #CCCCCC;*/
+}
+nav #menu
+{		
+	padding:5px;
+	width:1020px;	
+	list-style: none;
+	background:#f4f4f4;
+	background:rgba(0,0,0,0.1);
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	-moz-box-shadow:0 1px 0 rgba(255,255,255,0.2), inset 0 0.5px 0.5px rgba(0,0,0,0.5);
+	-webkit-box-shadow:0 1px 0 rgba(255,255,255,0.2), inset 0 0.5px 0.5px rgba(0,0,0,0.5);
+	box-shadow:0 1px 0 rgba(255,255,255,0.2), inset 0 0.5px 0.5px rgba(0,0,0,0.5);
+}
+nav #menu li
+{
+	float:left;
+}
+nav  a
+{
+	float:left;
+	padding:5px 15px;
+	text-decoration: none;
+	color:#555;		
+	font-weight:bold;	
+	font-size:larger;
+	letter-spacing: 1px;
+			
+	border-width: 1px;
+	border-style: solid;
+	border-color:#fff #ccc #999 #eee;
+	background:#c1c1c1;
+	background:-moz-linear-gradient(#f4f4f4, #eeeeee);
+	background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4),to(#eeeeee));
+	background: -webkit-linear-gradient(#f4f4f4, #eeeeee);
+	background: -o-linear-gradient(#f4f4f4, #eeeeee);
+	background: -ms-linear-gradient(#f4f4f4, #eeeeee);
+	background: linear-gradient(#f4f4f4, #eeeeee);	
+	margin:0 10px 0 10px;
+	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;	
+	
+}
+
+nav #menu li a:hover, nav #menu li a:focus{
+	outline:0;
+	color:#fff;
+	text-decoration: none;
+	text-shadow:0 1px 0 rgba(0,0,0,.2);
+	background:#52B7D5;
+	/*linear-gradient*/
+	background:-webkit-gradient(linear,left top,left bottom,from(#52B7D5),to(#359CBA));
+	background:-webkit-linear-gradient(left top,#52B7D5, #359CBA);
+	background:-moz-linear-gradient(left top,#52B7D5, #359CBA);
+	background:-o-linear-gradient(left top,#52B7D5, #359CBA);
+	background:linear-gradient(left top,#52B7D5, #359CBA);
+	
+	
+}
+nav #menu li a:active{
+	/*box-shadow*/
+	-webkit-box-shadow:0 0 1px 1px rgba(0,0,0,.3) inset;
+	-moz-box-shadow:0 0 1px 1px rgba(0,0,0,.3) inset;
+	box-shadow:0 0 2px 1px rgba(0,0,0,.3) inset;
+}
+/**========set asidemenu===========**/
+#asidemenu
+{
+	display: block;
+	height: 865px;
+}
+/**=====set footer=========**/
+
+#footer ul{
+	list-style:none;
+}
+#footer ul li
+{
+	float:left;
+	padding:0px;
+}
+#footer ul li a
+{
+	border-right: 1px solid #CCCCCC;
+	margin:0px 5px 15px 0px;
+	padding:2px 5px 2px 5px;	
+}
+#footer ul li:last-child a{
+	border:none;
+}
+	
+	
+	
+	

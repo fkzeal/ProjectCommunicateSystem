@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Project Management System</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="softwware" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+	<link type="text/css" rel="stylesheet" href="GlobalFiles/css/bootstrap/bootstrap-responsive.css" />
+	<link type="text/css" rel="stylesheet" href="GlobalFiles/css/bootstrap/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="GlobalFiles/css/global.css" />
+	<link type="text/css" rel="stylesheet" href="HomeFiles/css/Home.css" />
+	
+	<script type="text/javascript" src="GlobalFiles/js/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap.js"></script>			
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-transition.js"></script>		
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-tab.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-carousel.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-typeahead.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-scrollspy.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-button.js"></script>	
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-collapse.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-tooltip.js"></script>		
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-alert.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/bootstrap/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="GlobalFiles/js/global.js"></script>
+	<script type="text/javascript" src="HomeFiles/js/Home.js"></script>
+</head>
+<body>
+    <div class="navbar">
+			<div class="navbar-inner">
+				<div class="container">
+					  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+					 </a> 
+					 <a class="brand" href="#">欢迎光临PMS！</a>
+					 <div class="nav-collapse"> 						    							
+							<ul class="nav pull-right">
+								  <li ><a href="index.html"><i class="icon-home icon-white"></i>应用首页</a></li>
+								  <li><a href="#" ><i class=" icon-user icon-white"></i>wwzyhao</a></li>
+								  <li><a href="#" ><i class=" icon-info-sign icon-white"></i>帮助问答</a></li>	
+								  <li><a href="#" ><i class=" icon-arrow-right icon-white"></i>退出</a></li>								  
+							</ul>
+					 </div>
+				</div>
+			</div>
+	</div>
+	<header class="row">
+		<div class="span2 offset2">
+			<img src="GlobalFiles/logo.png" alt="logo" width="300px" height="100px" />
+		</div>		
+	</header>
+	<nav class="row">						
+		<ul id="menu" class="span12 offset2">
+			<li ><a href="#"><i class="icon-home"></i>应用市场</a></li>
+			<li ><a href="#"><i class="icon-list"></i>源码社区</a></li>
+			<li ><a href="#"><i class="icon-book"></i>我的项目</a></li>
+			<li ><a href="#"><i class="icon-star"></i>创建项目</a></li>															
+		</ul> 
+	</nav>
+	<div class="row" >
+		<!--aside menu-->
+			<div class="span3 offset2">
+				<div class="well" style="padding: 8px 0;">
+			        <ul class="nav nav-list" id="asidemenu">
+			          <li class="nav-header"><h3>项目分类</h3></li>
+			          <li class=""><a href="#">Java</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">C++</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">移动开发</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">Android</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">IOS</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">创新杯</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">EL程序设计大赛</a></li>
+			          <li class="divider"></li>
+			        </ul>
+			    </div>			
+			</div>	
+					
+		<!--main content-->	
+			<div class="span10" id="main-content">						
+				<div class="row">
+					<div class="span10">
+						<ul class="nav nav-tabs">
+							<li class="active">
+							  	<a data-toggle="tab" href="#hot-project"><span class="label label-info"><i class="icon-fire"></i> 热门项目</span></a>						  									    
+							</li>
+							<li>
+								<a data-toggle="tab" href="#latest-project"><span class="label label-info"><i class="icon-leaf"></i> 最新项目</span></a>
+							</li>						 
+						</ul>
+						<div class="tab-content">
+							<!--hot project-->
+							<div class="tab-pane active" id="hot-project">						    
+								<ul class="thumbnails">
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>							           	  
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">重力感应系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>							        
+							     </ul>
+							</div>
+							<!--latest project-->
+							<div class="tab-pane" id="latest-project">						    
+								<ul class="thumbnails">
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">网页爬虫系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">网页爬虫系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">网页爬虫系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">网页爬虫系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">网页爬虫系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								   <li class="span3">
+								      <div class="thumbnail">
+								           <img src="GlobalFiles/example.jpg"  class="project-img" alt="project img" />
+								           <div class="caption">
+								              <h5><a href="#">网页爬虫系统</a></h5>						              
+								              <p>评分：<span class="project-grade">9.8</span></p>
+								              <p>评论数：<span class="project-comments-qty">45</span></p>
+								              <button class="btn btn-primary">下载项目</button>
+								           </div>
+								      </div>							      
+								   </li>
+								 </ul>
+							</div>				
+						</div>		
+					</div>				
+				</div>
+				
+		</div>
+	</div>
+ 	<hr>  
+    <div id="footer" class="row">     	 	    	   	
+    	<div class="span12 offset6">	    	
+	    	<ul>
+	        	<li><a href="http://software.nju.edu.cn/">软件学院</a></li>
+	            <li><a href="http://software.nju.edu.cn/">南京大学</a></li>
+	            <li><a href="http://software.nju.edu.cn/">Copyright 2012-2013 南京大学软件学院</a></li> 
+	        </ul> 
+        </div>   	
+    </div>
+    
+</body>
+</html>

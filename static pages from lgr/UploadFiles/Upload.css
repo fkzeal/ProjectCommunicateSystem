@@ -1,0 +1,165 @@
+@charset "utf-8";
+/* CSS Document */
+
+#up_body
+{
+	margin-left:200px;
+	margin-right:200px;
+	width:1000px;
+}
+
+p.text_align
+{
+	text-align:center;
+}
+
+
+textarea.overhead
+{
+	height:20px;
+	width:50px;
+}
+
+
+table.process{
+	height:20px;
+	table-layout:fixed;
+	text-align:center;
+}
+
+td.process_cell{
+	background-color:#CCC;
+}
+
+textarea.readonly{
+	overflow:auto;
+	resize:none;
+	border:none;
+	background:#FFF;
+	color:#000;
+}
+
+#upload_rule textarea
+{
+	overflow:auto;
+	border:solid;
+	border-color:#999;
+	border-width:thin;
+	resize:none;
+	background:#FFF;
+}
+
+#rich_text_editor textarea
+{
+	resize:none; 
+	width:500px; 
+	height:300px;
+}
+
+#status
+{
+	margin:15px;
+	text-align:center;
+}
+
+#hint
+{
+	padding:8px;
+	margin:5px;
+	background:#999;
+	width:370px;
+	text-align:center;
+}
+
+#hint_block
+{
+	text-align:center;
+	margin-left:315px;
+}
+
+#is_accepted
+{
+	margin-left:250px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+#is_accepted form
+{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+#up_nav_btn
+{
+	text-align:center;
+}
+
+#process
+{
+	width:60%;
+	margin-left:200px;
+	table-layout:fixed;
+}
+
+textarea.rules
+{
+	width:500px;
+	height:500px;
+	margin-left:250px;
+	padding:8px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+#app_info
+{
+	margin-left:250px;
+	width:500px;
+}
+#app_info form
+{
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+#code_info
+{
+	margin-left:250px;
+}
+#code_info form
+{
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+#code_info p
+{
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+#code_preview
+{
+	margin-left:250px;
+}
+
+#code_preview form
+{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+#code_preview p
+{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+textarea.preview_input
+{ 
+	resize:none; 
+	width:400px; 
+	height:100px; 
+	overflow:auto;
+}

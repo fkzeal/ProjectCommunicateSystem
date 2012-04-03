@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+.project-img
+{
+	width:300px;
+	height: 130px;
+}	
+.project-grade
+{	
+	padding-top:5px;
+	margin-left:5px;
+	color:#FAAD40;
+	font-size:20px;
+	font-weight:bold;
+	
+}
+.project-comments-qty
+{
+	margin-left:5px;
+	color:#FAAD40;
+	font-weight:bold;
+}
+
+.nav-tabs
+{
+	margin-left:25px;
+}
+.thumbnails:first-child
+{
+	margin-left:4px;
+}
+.thumbnail p{
+	margin-top:5px;
+}
+.caption h5 a
+{
+	color:#000000;	
+}
+.caption h5 a:hover
+{
+	color:#359CBA;
+	text-decoration:none;
+}

@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+
+#nav
+{
+	border:1px solid #cccccc;
+	width:980px;
+	margin:5px 200px 5px 200px;
+	padding:10px;
+	height:35px;
+	background:#707070;
+}
+#nav ul
+{
+	list-style:none;
+	display:block;
+	padding:10px;
+	float:left;
+	width:100%;
+}
+#nav li
+{
+	padding:0 20px 0 20px;
+	border-right:#CCC 1px solid;
+	float:left;
+}
+#nav li a
+{
+	text-decoration:none;
+	color:#fff;
+	font-size:25px;
+	letter-spacing:5px;
+}
+#nav li a:hover
+{	
+	color:#8db6cd;	
+}
+#aside
+{
+	width:150px;
+	height:800px;;
+	float:left;
+	border:1px solid #cccccc;
+	padding:0;
+	margin:2px 5px 5px 200px;
+	background:#d8d8d8;
+	
+}
+#aside p
+{	
+	display:block;
+	margin:0;
+	padding:10px;
+	background:#404040;
+	border-bottom:2px #666666 solid;
+}
+#aside p span
+{
+	font-weight:200;
+	font-size:18px;
+	margin:0 0 0 25px;
+	color:#fff;
+}
+#aside ul
+{
+	list-style:none;
+	display:block;
+	padding:0;
+	margin:0;
+}
+#aside ul li
+{
+	display:block;
+	padding:6px;
+	margin:2px;
+	border-bottom:1px #cccccc solid;
+	float:left;
+	width:135px;
+	clear:both;
+}
+#aside li a
+{
+	text-decoration:none;
+	color:#000000;
+	display:block;
+	margin-left:15px;
+}
+#aside li a:hover
+{
+	color:#33CCFF;	
+}
+#myapp
+{
+	margin-right:200px;
+	margin:3px;
+	width:840px;
+	float:left;
+	clear:right;
+}
+#overhead
+{
+	margin-left:200px;
+	margin-right:200px;
+	width:1000px;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>创建项目</title>
+<link type="text/css" rel="stylesheet" href="GlobalFiles/global.css" />
+<link type="text/css" rel="stylesheet" href="UploadFiles/Upload.css" />
+</head>
+
+<body>
+	<div id="header">
+    	<div id="top-header">	
+        	<p id="username">您好，王同学！</p>
+            <a href="" class="btn" >应用首页</a>
+            <a href="" class="btn" id="account">账户管理</a>
+            <a href="" class="btn" id="logout">退出</a>            
+      	</div>
+        <img alt="logo" src="GlobalFiles/logo.png" id="logo" />
+    </div>
+    
+    <div id="up_body">
+    	<div id="overhead">
+        	<hr />
+			<div id="status">
+  				已上传资源数：
+  				<textarea name="num_of_resource" disabled="disabled" class="readonly overhead" >5</textarea> 
+  				&nbsp;积分：
+  				<textarea name="score" disabled="disabled" class="readonly overhead">1024</textarea>
+ 			</div>
+ 
+ 			<div id="hint_block">
+ 				<table id="hint" style="background:#999; width:365px;"; align="center">
+   					<tr><th><p>您上传的资源将会在候选区等待评审，请按照规范填写相应内容，未按照规则的资源将被删除</p></th></tr>
+  				</table>
+ 			</div>
+ 
+ 			<div id="proc_bar">
+  				<table id="process">
+   					<tr>
+            			<td class="process_cell">上传规则</td>
+    					<td class="process_cell">我的APP</td>
+    					<td class="process_cell">代码资源上传</td>
+    					<td class="process_cell" style="background:#69C">代码预览选择</td>
+  	 				</tr>
+  				</table>
+ 			</div>
+        </div>
+        
+        <div id="upload_info">
+        	<div id="code_preview">
+                <div>
+                    <form action="">
+                        代码预览
+                        <select>
+                            <option selected="selected" value="请选择语言"/>
+                            <option value="JAVA"/>
+                            <option value="C++"/>
+                            <option value="C#"/>
+                            <option value="PYTHON"/>
+                            <option value="HTML"/>
+                            <OPTION value="CSS"/>
+                            <option value="JAVASCRIPT"/>
+                        </select>
+                        e.g.:[code=py]print 'hello'[/code]
+                    </form>
+                                        
+                    <textarea class="preview_input" onclick="">请在此输入预览代码</textarea>
+                </div>
+                
+                <div>
+                    <p>参考代码链接</p>
+                    <p>
+                        <textarea class="preview_input"></textarea>
+                    </p>
+                </div>
+            </div>
+            
+            <div id="up_nav_btn">
+            	<form action="">
+   					<input type="button" value="哈哈，搞定，上传了" />
+   					<input type="button" value="还想回上一步修改" onclick="window.location.replace('upload_3.html');" />
+  				</form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer">
+    	<ul>
+        	<li><a href="http://software.nju.edu.cn/">软件学院</a></li>
+           	<li><a href="http://software.nju.edu.cn/">南京大学</a></li>
+      	    <li><a href="http://software.nju.edu.cn/">Copyright 2012-2013 南京大学软件学院</a></li>
+       	</ul>
+    </div>
+</body>
+</html>

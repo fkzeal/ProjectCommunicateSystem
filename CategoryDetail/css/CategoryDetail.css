@@ -1,0 +1,76 @@
+.category-block
+{
+	margin: 5px 5px 10px 0px;
+	border-bottom:#ccc 1px solid;
+	float: left;
+	display:block;
+	width:780px;
+	padding:5px;
+	list-style: none;
+}
+
+.category-block li img
+{
+	height: 150px;
+	width:150px;
+	margin:5px 5px 5px 10px;
+	list-style: none;
+	float: left;
+	cursor: pointer;
+}
+.category-item-name
+{
+	width:450px;
+	float:left;
+	height: 20px;
+	background:#F9F9F9;	
+	margin:5px 5px 5px 15px;
+}
+.category-item-name span
+{
+	letter-spacing:5px;
+	font-weight:400;
+	font-size:20px;
+	color:#33CCFF;
+	text-decoration:underline;
+	text-shadow:3px #000;
+	padding-left:0px;
+	cursor: pointer;
+}
+.category-block li p
+{
+	width:450px;
+	float: left;
+	height:100px;
+	margin:5px 5px 5px 15px;
+	word-break:break-all;
+}
+.category-item-grade,.category-item-comments
+{
+	width:100px;
+	height:20px;
+	margin:10px 5px 5px 5px;
+	float: left;
+}
+.category-block button
+{
+	width:80px;
+	font-size:15px;
+	float:left;
+	margin:5px;
+	height: 35px;
+}
+.category-item-grade span{
+	color:#FAAD40;
+	font-size:25px;
+	font-weight:bold;
+}
+.category-item-comments span{
+	color: #FAAD40;
+	font-weight:bold;
+}
+#cat-detail:last-child
+{
+	border-bottom:none;
+}
+
