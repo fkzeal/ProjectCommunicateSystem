@@ -1,5 +1,8 @@
 .DS_Store
 .localized
+.log
 
+/Icon
 /nbproject
-/assets
+/assets/
+/protected/data
