@@ -53,7 +53,7 @@ return array(
         'db' => array(
             'connectionString' => 'mysql:host=127.0.0.1;dbname=nju_software_app_management',
             'emulatePrepare' => true,
-            'username' => 'root',
+            'username' => '123',
             'password' => 'nju123',
             'charset' => 'utf8',
         ),
