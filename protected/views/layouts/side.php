@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Project Management System</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="description" content="" />
 	<meta name="author" content="softwware" />
 	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
-        <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/css/bootstrap/bootstrap-responsive.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/css/bootstrap/bootstrap-responsive.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/css/bootstrap/bootstrap.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/css/global.css" />
-<!--	<link type="text/css" rel="stylesheet" href="InfoFiles/css/CodeInfo.css" />-->
 	
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/jquery/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/bootstrap/bootstrap.js"></script>			
@@ -28,7 +26,8 @@
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/bootstrap/bootstrap-alert.js"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/bootstrap/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/global.js"></script>
-<!--	<script type="text/javascript" src="InfoFiles/js/Info.js"></script>-->
+    
+    <title>Project Management System</title>
 </head>
 <body>
        

@@ -8,8 +8,11 @@
  * @property double $AppScore
  * @property integer $AppDownloadTimes
  * @property integer $ProjectID
+ * @property integer $CategoryID
  *
  * The followings are the available model relations:
+ * @property CategoryInfo $category
+ * @property TagInfo[] $tags
  * @property Project $project
  */
 class ProjectApp extends CActiveRecord
@@ -42,16 +45,12 @@ class ProjectApp extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+					array('AppFile, CategoryID', 'required'),
                     array('AppFile', 'unsafe'),
-			array('AppFile', 'file', 
-				  'types'=>'apk,exe,app,jar',
-				  'maxSize'=>1024*1024*50),
-//			array('ProjectID', 'required'),
-//			array('AppDownloadTimes, ProjectID', 'numerical', 'integerOnly'=>true),
-//			array('AppScore', 'numerical'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('ID, AppScore, AppDownloadTimes, ProjectID', 'safe', 'on'=>'search'),
+					array('AppFile', 'file', 
+				  		  'types'=>'apk,exe,app,jar',
+				  		  'maxSize'=>1024*1024*50),
+					array('ID, AppScore, AppDownloadTimes, ProjectID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +63,8 @@ class ProjectApp extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'project' => array(self::BELONGS_TO, 'Project', 'ProjectID'),
+			'category' => array(self::BELONGS_TO, 'CategoryInfo', 'CategoryID'),
+			'tags' => array(self::MANY_MANY, 'TagInfo', 'app_tag(AppID, TagID)'), 
 		);
 	}
 
@@ -74,9 +75,11 @@ class ProjectApp extends CActiveRecord
 	{
 		return array(
 			'ID' => 'ID',
-			'AppScore' => 'App Score',
-			'AppDownloadTimes' => 'App Download Times',
+			'AppScore' => '应用评分',
+			'AppDownloadTimes' => '下载次数',
 			'ProjectID' => 'Project',
+			'AppFile' => '应用文件',
+			'CategoryID' => '应用分类',
 		);
 	}
 

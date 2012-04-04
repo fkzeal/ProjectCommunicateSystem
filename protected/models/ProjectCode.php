@@ -10,8 +10,11 @@
  * @property integer $CodeDownloadTimes
  * @property string $CodeDescription
  * @property string $CodeFragment
+ * @property integer $CategoryID
  *
  * The followings are the available model relations:
+ * @property CategoryInfo $category
+ * @property TagInfo[] $tags
  * @property Project $project
  */
 class ProjectCode extends CActiveRecord
@@ -43,11 +46,9 @@ class ProjectCode extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-//			array('ProjectID', 'required'),
-//			array('ProjectID, CodeDownloadTimes', 'numerical', 'integerOnly'=>true),
-//			array('CodeScore', 'numerical'),
+			array('CodeDescription, CodeFragment, CategoryID, CodeFile', 'required'),
 			array('CodeDescription, CodeFragment', 'safe'),
-                    array('CodeFile', 'unsafe'),
+            array('CodeFile', 'unsafe'),
 			array('CodeFile', 'file', 
 				  'types'=>'zip,rar',
 				  'maxSize'=>1024*1024*1024),
@@ -66,6 +67,8 @@ class ProjectCode extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'project' => array(self::BELONGS_TO, 'Project', 'ProjectID'),
+			'category' => array(self::BELONGS_TO, 'CategoryInfo', 'CategoryID'),
+			'tags' => array(self::MANY_MANY, 'TagInfo', 'code_tag(CodeID, TagID)'), 
 		);
 	}
 
@@ -77,10 +80,12 @@ class ProjectCode extends CActiveRecord
 		return array(
 			'ID' => 'ID',
 			'ProjectID' => 'Project',
-			'CodeScore' => 'Code Score',
-			'CodeDownloadTimes' => 'Code Download Times',
-			'CodeDescription' => 'Code Description',
-			'CodeFragment' => 'Code Fragment',
+			'CodeScore' => '代码评分',
+			'CodeDownloadTimes' => '下载次数',
+			'CodeDescription' => '代码描述',
+			'CodeFragment' => '代码片段',
+			'CodeFile' => '代码文件',
+			'CategoryID' => '代码分类',
 		);
 	}
 

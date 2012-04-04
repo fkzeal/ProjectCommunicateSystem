@@ -11,14 +11,12 @@
  * @property string $ProjectCreatedTime
  * @property string $ProjectIconPath
  * @property integer $UserID
- * @property string $TeamName //更改项 新加的团队名称
+ * @property string $TeamName
  *
  * The followings are the available model relations:
- * @property AppCodeCategory[] $appCodeCategories
- * @property AppCodeTag[] $appCodeTags
  * @property User $user
- * @property ProjectApp[] $projectApps
- * @property ProjectCode[] $projectCodes
+ * @property ProjectApp $projectApps
+ * @property ProjectCode $projectCodes
  * @property ProjectComment[] $projectComments
  */
 class Project extends CActiveRecord {
@@ -46,26 +44,17 @@ class Project extends CActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
-//            array('ProjectStatus, ProjectDescription, ProjectCreatedTime, UserID', 'required'),
             array('ProjectStatus, UserID', 'numerical', 'integerOnly' => true),
             array('ProjectName', 'length', 'max' => 30),
             array('ProjectIconPath', 'length', 'max' => 40),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
-//            array('ID, ProjectName, ProjectStatus, ProjectDescription, ProjectCreatedTime, ProjectIconPath, UserID', 'safe', 'on' => 'search'),
-            
-            
-            array('ProjectName, ProjectDescription', 'required'),
-			array('ProjectIcon', 'unsafe'),
-			array('ProjectIcon', 'file',
-				  'types'=>'jpg, gif, png',
-				  'maxSize'=>1024*1024*1),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('ProjectName, ProjectDescription', 'safe', 'on'=>'search')
+            array('ProjectName, ProjectDescription, ProjectIcon', 'required'),
+      			array('ProjectIcon', 'unsafe'),
+      			array('ProjectIcon', 'file',
+      				  'types'=>'jpg, gif, png',
+                        'allowEmpty' => false,
+      				  'maxSize'=>1024*1024*1),
+			      array('ProjectName, ProjectDescription', 'safe', 'on'=>'search')
         );
     }
 
@@ -76,8 +65,6 @@ class Project extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'appCodeCategories' => array(self::HAS_MANY, 'AppCodeCategory', 'ProjectID'),
-            'appCodeTags' => array(self::HAS_MANY, 'AppCodeTag', 'ProjectID'),
             'user' => array(self::BELONGS_TO, 'User', 'UserID'),
             'projectApps' => array(self::HAS_ONE, 'ProjectApp', 'ProjectID'),
             'projectCodes' => array(self::HAS_ONE, 'ProjectCode', 'ProjectID'),
@@ -91,13 +78,14 @@ class Project extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'ID' => 'ID',
-            'ProjectName' => 'Project Name',
-            'ProjectStatus' => 'Project Status',
-            'ProjectDescription' => 'Project Description',
-            'ProjectCreatedTime' => 'Project Created Time',
-            'ProjectIconPath' => 'Project Icon Path',
-            'UserID' => 'User',
-            'ProjectIcon' => 'Project Icon'
+            'ProjectName' => '项目名称',
+            'TeamName' => '团队名称',
+            'ProjectStatus' => '项目状态',
+            'ProjectDescription' => '项目描述',
+            'ProjectCreatedTime' => '项目创建时间',
+            'ProjectIconPath' => '项目图标路径',
+            'UserID' => '用户',
+            'ProjectIcon' => '项目图标'
         );
     }
 
