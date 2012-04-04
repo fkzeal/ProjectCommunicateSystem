@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class AppHomeController extends Controller
 {
@@ -11,20 +11,39 @@ class AppHomeController extends Controller
 		$category=CategoryInfo::model()->findAll("Flag=:Flag",array(":Flag"=>"a"));
 		
 		//9 hotest
-		$hotest=ProjectApp::model()->findAll(array(
+		$hotest=ProjectApp::model()->with("project")->findAll(array(
    	 		'order' => 'AppDownloadTimes DESC',
-    			'limit' => 9,
-		));		
+    		'limit' => 9,
+		));	
 		//9 newest
-		$newest=Project::model()->findAll(array(
+		$newest=ProjectApp::model()->with("project")->findAll(array(
    	 		'order' => 'ProjectCreatedTime DESC',
-    			'limit' => 9,
+    		'limit' => 9,
 		));
-
+		//$newest=ProjectApp::model()->with('project')->findall();
+		
+		$commentHotest=array();
+		foreach($hotest as $item){
+		$commentHotest[]=ProjectComment::model()->count(
+		    'ProjectID=:ProjectID AND Flag=:Flag',
+		    array(':ProjectID'=>$item->ProjectID,':Flag'=>'a'));
+		}
+		
+		$commentNewest=array();
+		foreach($newest as $item){
+		$commentNewest[]=ProjectComment::model()->count(
+		    'ProjectID=:ProjectID AND Flag=:Flag',
+		    array(':ProjectID'=>$item->ProjectID,':Flag'=>'a'));
+		}
+		
+		
 		$this->render('index',array(
 					'category'=>$category,
 					'hotest'=>$hotest,
-					'newest'=>$newest));
+					'newest'=>$newest,
+					'commentHotest'=>$commentHotest,
+					'commentNewest'=>$commentNewest
+					));
 	
 	}
 	// Uncomment the following methods and override them if needed
