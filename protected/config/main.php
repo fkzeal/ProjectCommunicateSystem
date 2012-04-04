@@ -7,6 +7,8 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Application',
+    'language'=>'zh_CN',
+    
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -41,15 +43,7 @@ return array(
           '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
           ),
           ),
-         */
-        /*
-         * 'db'=>array(
-          'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-          ),
-         * 
-         */
-        // uncomment the following to use a MySQL database
-
+        */
         'db' => array(
             'connectionString' => 'mysql:host=127.0.0.1;dbname=nju_software_app_management',
             'emulatePrepare' => true,

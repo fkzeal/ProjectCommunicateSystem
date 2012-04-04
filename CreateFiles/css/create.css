@@ -1,0 +1,27 @@
+#steps
+{
+	list-style: none;
+	width: 100%;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+#steps li.current
+{
+	color: black;
+}
+
+#steps li
+{
+	font-size: 24px;
+	float: left;
+	color: #B0B1B3;
+	padding: 10px;
+}
+
+#steps li span
+{
+	font-size: 11px;
+	display: block;
+}

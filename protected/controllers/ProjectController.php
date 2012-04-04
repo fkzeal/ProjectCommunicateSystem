@@ -6,21 +6,17 @@ class ProjectController extends Controller {
         $project = new Project;
         $app = new ProjectApp;
         $code = new ProjectCode;
-        $appcategory = new AppCodeCategory();
-        $codecategory = new AppCodeCategory();
 
         // respond ajax validation
         $this->performAjaxValidation($project, $app, $code);
 
         if (isset($_POST['Project'], $_POST['ProjectApp'], $_POST['ProjectCode'])) {
-            // mass assignment
+            // massive assignment
             $project->attributes = $_POST['Project'];
+            $app->attributes = $_POST['ProjectApp'];
             $code->attributes = $_POST['ProjectCode'];
-            $appcategory->attributes = $_POST['AppCodeCategory'];
-            $codecategory->attributes = $_POST['AppCodeCategory'];
-            
+
             // TODO for the rich text editor, shoud strip some harmful tags with php strip_tags
-            // TODO fake user
             $project->UserID = Yii::app()->user->getState('id');
             $project->ProjectStatus = Project::UNPUBLISHED;
 
@@ -31,7 +27,6 @@ class ProjectController extends Controller {
             $valid = $project->validate();
             $valid = $app->validate() && $valid;
             $valid = $code->validate() && $valid;
-
             if ($valid) {
                 $project->save(false);
 
@@ -40,12 +35,6 @@ class ProjectController extends Controller {
 
                 $code->ProjectID = $project->ID;
                 $code->save(false);
-                
-                $appcategory->ProjectID = $project->ID;
-                $appcategory->insert();
-                
-                $codecategory->ProjectID = $project->ID;
-                $codecategory->insert();
 
                 $rootPath = Yii::app()->basePath . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $project->ID . DIRECTORY_SEPARATOR;
                 $basePath = $rootPath;
@@ -53,12 +42,12 @@ class ProjectController extends Controller {
                     mkdir($basePath, 0777, true);
                 }
                 
-                $iconpath = YiiBase::getPathOfAlias('webroot').DIRECTORY_SEPARATOR . 'Icon' .DIRECTORY_SEPARATOR. $project->ID.DIRECTORY_SEPARATOR;
+                $iconpath = YiiBase::getPathOfAlias('webroot').DIRECTORY_SEPARATOR . 'Icon' . DIRECTORY_SEPARATOR . $project->ID . DIRECTORY_SEPARATOR;
                 if (!is_dir($iconpath)) {
                     mkdir($iconpath, 0777, true);
                 }
                 
-                $readPath = 'Icon' .DIRECTORY_SEPARATOR. $project->ID.DIRECTORY_SEPARATOR.$project->ProjectName . '.' . pathinfo($project->ProjectIcon, PATHINFO_EXTENSION);
+                $readPath = 'Icon' .DIRECTORY_SEPARATOR. $project->ID . DIRECTORY_SEPARATOR.$project->ProjectName . '.' . pathinfo($project->ProjectIcon, PATHINFO_EXTENSION);
                 $projectIconPath = $iconpath . $project->ProjectName . '.' . pathinfo($project->ProjectIcon, PATHINFO_EXTENSION);
                 $project->ProjectIcon->saveAs($projectIconPath);
                 
@@ -79,14 +68,11 @@ class ProjectController extends Controller {
                 $projectCodePath = $basePath . $project->ProjectName . '_code.' . pathinfo($code->CodeFile, PATHINFO_EXTENSION);
                 $code->CodeFile->saveAs($projectCodePath);
 
-                // TODO may redirect to another page
-                echo $basePath;
-                echo "Create project sucessfully";
+                $this->redirect(Yii::app()->createUrl('project/view'));
             }
         }
-        $this->render('index', array('project' => $project, 'app' => $app, 'code' => $code,
-            'appcategory'=>$appcategory,'codecategory'=>$codecategory
-            ));
+
+        $this->render('create', array('project' => $project, 'app' => $app, 'code' => $code));
     }
 
     protected function performAjaxValidation($project, $app, $code) {
@@ -94,7 +80,8 @@ class ProjectController extends Controller {
             echo CActiveForm::validate($project);
             echo CActiveForm::validate($app);
             echo CActiveForm::validate($code);
-        }
+            Yii::app()->end();
+        }     
     }
 
     public function filters() {
@@ -105,41 +92,14 @@ class ProjectController extends Controller {
 
     public function accessRules() {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' acti
-                //'users'=>array('@'),
-                expression => (Yii::app()->user->getState('authority') == 1 ? null : 'false'),
+            array('allow',
+                  'actions'=>array('create'),
+                  'users'=>array('@'),
             ),
-            array('deny', // allow all users to perform 'index' and 'view' acti
-                'users' => array('*'),
-//                        'verbs'=>array('GET', 'POST')
+            array('deny',
+                  'actions'=>array('create'),
+                  'users'=>array('*'),
             ),
         );
     }
-
-    // Uncomment the following methods and override them if needed
-    /*
-      public function filters()
-      {
-      // return the filter configuration for this controller, e.g.:
-      return array(
-      'inlineFilterName',
-      array(
-      'class'=>'path.to.FilterClass',
-      'propertyName'=>'propertyValue',
-      ),
-      );
-      }
-
-      public function actions()
-      {
-      // return external action classes, e.g.:
-      return array(
-      'action1'=>'path.to.ActionClass',
-      'action2'=>array(
-      'class'=>'path.to.AnotherActionClass',
-      'propertyName'=>'propertyValue',
-      ),
-      );
-      }
-     */
 }
