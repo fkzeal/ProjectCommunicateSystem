@@ -6,20 +6,14 @@ class DetailListController extends Controller {
        		parent::init();    
 		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."CategoryDetail/css/CategoryDetail.css");
 //                Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/CodeHome.css');
-               
-//
-//
+
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'CategoryDetail/js/CategoryDetail.js');
-//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.ui.button.min.js');
-//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.7.1.min.js');
-//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.17.custom.min.js');
-
-
 //	Yii::app()->clientScript->registerCoreScript('jquery');
 	}
     public function actionList() {
         $type = Yii::app()->request->getParam('type');
         $category = Yii::app()->request->getParam('category');
+        $projectid = Yii::app()->request->getParam('projectid');
         $categoryInfo = CategoryInfo::model()->with('appCodeCategory')->findAll('FirstLevel=:FirstLevel And Flag=:f', 
                 array(':FirstLevel' => $category,':f'=>$type));
 
@@ -46,7 +40,7 @@ class DetailListController extends Controller {
         }
 
         $this->render('list',array(
-            'cate'=>$cate,'type'=>$type,'category'=>$category
+            'cate'=>$cate,'type'=>$type,'category'=>$category,'projectid'=>$projectid
         ));
     }
 

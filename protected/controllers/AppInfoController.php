@@ -2,10 +2,21 @@
 
 class AppInfoController extends Controller
 {
+    
+    public function init() {
+        parent::init();
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/InfoFiles/css/CodeInfo.css");      
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/InfoFiles/js/Info.js");
+    }
+    
 	public function actionIndex()
 	{
 		$id = Yii::app()->user->getState('id');
         $projectid = $_GET['projectid'];
+        
+        if (empty ($projectid)) {
+            $this->redirect(Yii::app()->createUrl('apphome/index'));
+        }
 //           $this->redirect($this->createUrl('View'));
         $projectExist = Project::model()->findByPk($projectid);
         $previousProject = Yii::app()->user->getState('projectid');
@@ -45,14 +56,15 @@ class AppInfoController extends Controller
         //find the comment table where the flag=c and eager find the relation user
 
         $project = Project::model()->with('projectApps', 'user')->findByPk($projectid);
-        $categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
-            'ProjectID' => $projectid
-                ));                        
-        foreach ($categoryID as $value) {
-            if ($value->category[Flag] == 'a') {
-                $category = $value->category;
-            }
-        }
+//        $categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
+//            'ProjectID' => $projectid
+//                ));                        
+        $category = AppCodeCategory::model()->with('category')->find(
+                "ProjectID=:projectid AND Flag=:f", array(
+            ':projectid' => $projectid,
+            ':f' => 'a'
+                )
+        );
         //$category = CategoryInfo::model()->findByPk($category->CategoryID);
         //$categoryID[] = $category->category[SecondLevel];
 
@@ -70,14 +82,20 @@ class AppInfoController extends Controller
 //                    $reference[$value->BeRefered] = Project::model()->findByPk($value->BeRefered);
 //                }
 
-    $tagID = AppCodeTag::model()->with('tag')->findAllByAttributes(array(
-            'ProjectID' => $projectid
-                ));
-        foreach ($tagID as $value) {
-            if ($value->tag[Flag] == 'a') {
-                $tag[] = $value->tag;
-            }
-        }
+//    $tagID = AppCodeTag::model()->with('tag')->findAllByAttributes(array(
+//            'ProjectID' => $projectid
+//                ));
+//        foreach ($tagID as $value) {
+//            if ($value->tag[Flag] == 'a') {
+//                $tag[] = $value->tag;
+//            }
+//        }
+                $tag = AppCodeTag::model()->with('tag')->findAll(
+                "ProjectID=:projectid AND Flag=:f", array(
+            ':projectid' => $projectid,
+            ':f' => 'a'
+                )
+        );
 
         $this->render('index', array(
              'categoryInfo' => $categoryInfo,'tag'=>$tag,

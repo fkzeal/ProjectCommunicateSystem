@@ -2,10 +2,10 @@
 
 class CodeInfoController extends Controller {
 
-     public function init() {
+    public function init() {
         parent::init();
-		//Yii::app()->clientScript->registerCssFile("InfoFiles/css/CodeInfo.css");      
-		//Yii::app()->clientScript->registerScriptFile("CodeInfoFiles/js/Info.js");
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . "/InfoFiles/css/CodeInfo.css");
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . "/InfoFiles/js/Info.js");
     }
 
     public function actionIndex() {
@@ -14,29 +14,41 @@ class CodeInfoController extends Controller {
         $projectid = $_GET['projectid'];
 //           $this->redirect($this->createUrl('View'));
 
+        if (empty ($projectid)) {
+            $this->redirect(Yii::app()->createUrl('codemain/index'));
+        }
         $categoryInfo = CategoryInfo::model()->findAllByAttributes(array(
             'Flag' => 'c'
                 ));
-
-
         //find the comment table where the flag=c and eager find the relation user
 
         $project = Project::model()->with('projectCodes', 'user')->findByPk($projectid);
-        /*$categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
-            'ProjectID' => $projectid
-                ));
-        foreach ($categoryID as $value) {
-            if ($value->category['Flag'] == 'c') {
-                $category = $value->category;
+        /* $categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
+          'ProjectID' => $projectid
+          ));
+          foreach ($categoryID as $value) {
+          if ($value->category['Flag'] == 'c') {
+          $category = $value->category;
+          }
+          } */
+        if (!isset($project)) {
+
+//            Yii::app()->errorHandler->error->message = '44444';
+            throw new CHttpException(404, '此项目不存在');
+        } else {
+            $codeExist = ProjectCode::model()->findByAttributes(array('ProjectID' => $projectid));
+            if (isset($codeExist)) {
+                
+            } else {
+                throw new CHttpException(404, '此项目没有对应的代码可供下载或查看');
             }
-        }*/
-		$category = AppCodeCategory::model()->with('category')->find(
-			"ProjectID=:projectid AND Flag=:f", 
-			array(
-				':projectid' => $projectid, 
-				':f' => 'c'
-			)
-		);
+        }
+        $category = AppCodeCategory::model()->with('category')->find(
+                "ProjectID=:projectid AND Flag=:f", array(
+            ':projectid' => $projectid,
+            ':f' => 'c'
+                )
+        );
 
         //$category = CategoryInfo::model()->findByPk($category->CategoryID);
         //$categoryID[] = $category->category[SecondLevel];
@@ -48,41 +60,35 @@ class CodeInfoController extends Controller {
         $count = ProjectComment::model()->count("ProjectID=:projectid AND Flag=:f", array(
             ':projectid' => $projectid, ':f' => 'c'));
 
-       
-		/*$refered = ProjectReference::model()->findAllByAttributes(array(
-            'WhoRefer' => $projectid
-                ));
-        foreach ($refered as $value) {
-            $reference[$value->BeRefered] = Project::model()->findByPk($value->BeRefered);
-        }*/
+//the code reference function 
+        /* $refered = ProjectReference::model()->findAllByAttributes(array(
+          'WhoRefer' => $projectid
+          ));
+          foreach ($refered as $value) {
+          $reference[$value->BeRefered] = Project::model()->findByPk($value->BeRefered);
+          } */
 
 
-       /* $tagID = AppCodeTag::model()->with('tag')->findAllByAttributes(array(
-            'ProjectID' => $projectid
-                ));
-        foreach ($tagID as $value) {
-            if ($value->tag[Flag] == 'c') {
-                $tag[] = $value->tag;
-            }
-        } */         
-		$tag = AppCodeTag::model()->with('tag')->findAll(
-			"ProjectID=:projectid AND Flag=:f", 
-			array(
-				':projectid' => $projectid, 
-				':f' => 'c'
-			)	
-		);
-	
+        /* $tagID = AppCodeTag::model()->with('tag')->findAllByAttributes(array(
+          'ProjectID' => $projectid
+          ));
+          foreach ($tagID as $value) {
+          if ($value->tag[Flag] == 'c') {
+          $tag[] = $value->tag;
+          }
+          } */
+        $tag = AppCodeTag::model()->with('tag')->findAll(
+                "ProjectID=:projectid AND Flag=:f", array(
+            ':projectid' => $projectid,
+            ':f' => 'c'
+                )
+        );
 
-
-//        if (empty($name)) {
-//            $name = $username;
-//        }
 
         $this->render('index', array(
             'categoryInfo' => $categoryInfo, 'tag' => $tag,
             'comment' => $comment, 'project' => $project, 'category' => $category,
-            'count' => $count,'userid' => $id, 'projectid' => $projectid
+            'count' => $count, 'userid' => $id, 'projectid' => $projectid
         ));
     }
 
@@ -136,7 +142,6 @@ class CodeInfoController extends Controller {
             ),
         );
     }
-
 
     // Uncomment the following methods and override them if needed
     /*

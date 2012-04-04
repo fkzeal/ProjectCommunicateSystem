@@ -252,41 +252,50 @@ class SiteController extends Controller {
 		else
 			$project_type="code";
 
-		$dir_name = "protected/data/".$project_id.$project_type;
 
+		$dir_name = yii::app()->basePath."/data/"."$project_id/".$project_type;
 		$dir_handle = opendir($dir_name) or die("can't open ".$dir_name);
 
-		while($file_name = readdir($dir_handle));
+		while($file_name = readdir($dir_handle))
+		{
+			if($file_name === "."||$file_name === "..")
+				continue;
 
-		if($file_name === "."||$file_name === "..")
-			return false;
+				$file_path = $dir_name."/".$file_name;
 
-
-		$file_path = $project_id."/".$project_type."/".$file_name;
-
-		if(!file_exists($file_path))
-			return fasle;
-
-		$file_size = filesize($file_path);
-		header("Content-type: application/octet-stream;charset=utf-8");
-		header("Accept-Ranges: bytes");
-		header("Accept-Length: $file_size");
-		header("Content-Disposition: attachment; filename=".$file_name);
-		$fp = fopen($file_path,"r");
-		$buffer_size = 1024;
-		$cur_pos = 0;
-		while(!feof($fp)&&$file_size-$cur_pos>$buffer_size)
-		{										        
-			$buffer = fread($fp,$buffer_size);
-			echo $buffer;
-			$cur_pos += $buffer_size;
-		}
-		$buffer = fread($fp,$file_size-$cur_pos);
-		echo $buffer;
-		fclose($fp);
+				
+				if(!file_exists($file_path)){
+				
+					return fasle;
+				}
+				$file_size = filesize($file_path);
+									
+				//utf 8 to gbk				
+				header("Content-type: application/octet-stream;charset=utf-8");
+				header("Accept-Ranges: bytes");
+				header("Accept-Length: $file_size");
+				header("Content-Disposition: attachment; filename=".$file_name);
+				ob_flush();
+				$fp = fopen($file_path,"r");
+				$buffer_size = 1024;
+				$cur_pos = 0;
+				while(!feof($fp)&&$file_size-$cur_pos>$buffer_size)
+				{										        
+					$buffer = fread($fp,$buffer_size);
+					echo $buffer;
+					$cur_pos += $buffer_size;
+				}
+				$buffer = fread($fp,$file_size-$cur_pos);
+				echo $buffer;
+				fclose($fp);
                 echo 'success';
-		return true;
+				return true;
+		}
+
+	return false;
+	
 	}
+
 
 
 }

@@ -3,7 +3,12 @@
 class AppHomeController extends Controller
 {
 	
+    public function init(){    
+       		parent::init();    
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/HomeFiles/css/Home.css');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/HomeFiles/js/Home.js');
 
+	}
         	public function actionIndex(){
 
 		

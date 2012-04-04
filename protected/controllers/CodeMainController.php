@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class CodeMainController extends Controller {
 
@@ -6,13 +6,13 @@ class CodeMainController extends Controller {
     
     public function init(){    
        		parent::init();    
-//		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/global.css');
+		Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/HomeFiles/css/Home.css');
 //                Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/CodeHome.css');
 //                Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/
 //jquery-ui-1.8.17.custom.css');
 //
 //
-//		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/CodeHome.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/HomeFiles/js/Home.js');
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.ui.button.min.js');
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.7.1.min.js');
 //		Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.17.custom.min.js');
@@ -23,43 +23,7 @@ class CodeMainController extends Controller {
 
 
     public function actionIndex() {
-//        $this->_id = $_GET['id'];
-//        $cookie=Yii::app()->request->cookies['loginID'];
-//        $this->_id = $cookie->value;
-//           $this->redirect($this->createUrl('View'));
-//        $name = User::model()->findByPk($this->_id)->NickName;
-//        $username = User::model()->findByPk($this->_id)->UserName;
-//        if (empty($name)) {
-//            $name = $username;
-//        }
-//        
-//        $categoryInfo = CategoryInfo::model()->findAllByAttributes(array(
-//            'Flag'=>'c'
-//        ));
-//        
-////     
-//        
-//        $criteria = new CDbCriteria; 
-//        $criteria->order = 'CodeDownloadTimes DESC';
-//        $criteria->limit = 9;
-////        $criteria->with=array(
-////'project'
-////);
-//
-//        $hotCode = ProjectCode::model()->with('project')->findAll($criteria);
-////        $hotCode = ProjectCode::model()->with(array( 'project'=>array(  'ProjectIconPath')))->findAll($criteria);
-//        
-////        foreach ($hotCode as $key => $value) {
-////            $hotProject[] = $value->project;
-//////            Project::model()->findByPk($hotCode[$key]->ProjectID);;
-////        }
-//        
-//        $this->render('index'
-//                , array('name' => $name,'categoryInfo'=>$categoryInfo,
-//                    'hotCode'=>$hotCode,//'hotProject'=>$hotProject
-//                    'id'=> $this->_id,
-//                    )
-//        );
+
              
 
 		//st the categories on the left
@@ -67,7 +31,7 @@ class CodeMainController extends Controller {
 		
 		//find the 9 hotest projects` code
 		$hotest=ProjectCode::model()->with("project")->findAll(array(
-   	 		'order' => 'CodeDownloadTimes DESC',
+   	 		    'order' => 'CodeDownloadTimes DESC',
     			'limit' => 9,
     			//'offset' => 0,
 		));		
@@ -80,12 +44,27 @@ class CodeMainController extends Controller {
     			//'offset' => 0,
 		));
 
+		$commentHotest=array();
+		foreach($hotest as $item){
+		$commentHotest[]=ProjectComment::model()->count(
+		    'ProjectID=:ProjectID AND Flag=:Flag',
+		    array(':ProjectID'=>$item->ProjectID,':Flag'=>'c'));
+		}
 		
+		$commentNewest=array();
+		foreach($newest as $item){
+		$commentNewest[]=ProjectComment::model()->count(
+		    'ProjectID=:ProjectID AND Flag=:Flag',
+		    array(':ProjectID'=>$item->ProjectID,':Flag'=>'c'));
+		}
 
 		$this->render('index',array(
 					'category'=>$category,
 					'hotest'=>$hotest,
-					'newest'=>$newest));
+					'newest'=>$newest,
+					'commentHotest'=>$commentHotest,
+					'commentNewest'=>$commentNewest
+					));
 	
 
     }
@@ -151,12 +130,12 @@ public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' acti
-                            expression=> (Yii::app()->user->getState('authority')==1 ? null : 'false'), 
+                'expression'=> (Yii::app()->user->getState('authority')==1 ? null : 'false'), 
                             
 			),
-                    array('deny',  // allow all users to perform 'index' and 'view' acti
+            array('deny',  // allow all users to perform 'index' and 'view' acti
 				'users'=>array('*'),
-                        'message'=>'您不是开发者，权限不够无法浏览源码'
+                'message'=>'您不是开发者，权限不够无法浏览源码'
 //                        'verbs'=>array('GET', 'POST')
 			),
 			
