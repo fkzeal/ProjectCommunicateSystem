@@ -2,17 +2,14 @@
 
 class CodeInfoController extends Controller {
 
-    public function init() {
+     public function init() {
         parent::init();
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/CodeHome.js');
-
-
-        Yii::app()->clientScript->registerCoreScript('jquery');
+		//Yii::app()->clientScript->registerCssFile("InfoFiles/css/CodeInfo.css");      
+		//Yii::app()->clientScript->registerScriptFile("CodeInfoFiles/js/Info.js");
     }
 
-    public function actionIndex($projectid) {
-        // CodeMainController::
-       
+    public function actionIndex() {
+//        $this->layout = "//layouts/column1";
         $id = Yii::app()->user->getState('id');
         $projectid = $_GET['projectid'];
 //           $this->redirect($this->createUrl('View'));
@@ -21,23 +18,26 @@ class CodeInfoController extends Controller {
             'Flag' => 'c'
                 ));
 
-//        $criteria = new CDbCriteria;
-//        $criteria->condition = 'ProjectID=:projectid,Flag=:flag';
-//        $criteria->params = array(':projectid' => $projectid,':flag' => 'a');
+
         //find the comment table where the flag=c and eager find the relation user
 
         $project = Project::model()->with('projectCodes', 'user')->findByPk($projectid);
-        $categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
+        /*$categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
             'ProjectID' => $projectid
                 ));
-         if(empty ($project)){
-            $this->redirect(array('codemain/index'));
-        }
         foreach ($categoryID as $value) {
-            if ($value->category[Flag] == 'c') {
+            if ($value->category['Flag'] == 'c') {
                 $category = $value->category;
             }
-        }
+        }*/
+		$category = AppCodeCategory::model()->with('category')->find(
+			"ProjectID=:projectid AND Flag=:f", 
+			array(
+				':projectid' => $projectid, 
+				':f' => 'c'
+			)
+		);
+
         //$category = CategoryInfo::model()->findByPk($category->CategoryID);
         //$categoryID[] = $category->category[SecondLevel];
 
@@ -48,22 +48,33 @@ class CodeInfoController extends Controller {
         $count = ProjectComment::model()->count("ProjectID=:projectid AND Flag=:f", array(
             ':projectid' => $projectid, ':f' => 'c'));
 
-        $refered = ProjectReference::model()->findAllByAttributes(array(
+       
+		/*$refered = ProjectReference::model()->findAllByAttributes(array(
             'WhoRefer' => $projectid
                 ));
         foreach ($refered as $value) {
             $reference[$value->BeRefered] = Project::model()->findByPk($value->BeRefered);
-        }
+        }*/
 
-        $tagID = AppCodeTag::model()->with('tag')->findAllByAttributes(array(
+
+       /* $tagID = AppCodeTag::model()->with('tag')->findAllByAttributes(array(
             'ProjectID' => $projectid
                 ));
         foreach ($tagID as $value) {
             if ($value->tag[Flag] == 'c') {
                 $tag[] = $value->tag;
             }
-        }
-//
+        } */         
+		$tag = AppCodeTag::model()->with('tag')->findAll(
+			"ProjectID=:projectid AND Flag=:f", 
+			array(
+				':projectid' => $projectid, 
+				':f' => 'c'
+			)	
+		);
+	
+
+
 //        if (empty($name)) {
 //            $name = $username;
 //        }
@@ -71,7 +82,7 @@ class CodeInfoController extends Controller {
         $this->render('index', array(
             'categoryInfo' => $categoryInfo, 'tag' => $tag,
             'comment' => $comment, 'project' => $project, 'category' => $category,
-            'count' => $count, 'reference' => $reference, 'userid' => $id, 'projectid' => $projectid
+            'count' => $count,'userid' => $id, 'projectid' => $projectid
         ));
     }
 
@@ -80,7 +91,7 @@ class CodeInfoController extends Controller {
         $model = new ProjectComment;
 //     if (isset ($_POST['ProjectComment'])) {
 //         $model->attributes =  $_POST['ProjectComment'];
-        $model->Content = $_POST['comment-content'];
+        $model->Content = $_POST['textarea'];
         $model->UserID = $_POST['userid'];
         $model->ProjectID = $_POST['projectid'];
         $model->Flag = $_POST['flag'];
@@ -117,7 +128,7 @@ class CodeInfoController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' acti
                 //'users'=>array('@'),
-                expression => (Yii::app()->user->getState('authority') == 1 ? null : 'false'),
+                'expression' => (Yii::app()->user->getState('authority') == 1 ? null : 'false'),
             ),
             array('deny', // allow all users to perform 'index' and 'view' acti
                 'users' => array('*'),
@@ -125,6 +136,7 @@ class CodeInfoController extends Controller {
             ),
         );
     }
+
 
     // Uncomment the following methods and override them if needed
     /*
