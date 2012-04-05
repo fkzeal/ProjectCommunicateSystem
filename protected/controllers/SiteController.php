@@ -41,7 +41,6 @@ class SiteController extends Controller {
             array('allow', // deny all users
                 'users' => array('*'),
             ),
-            
         );
     }
 
@@ -66,8 +65,11 @@ class SiteController extends Controller {
      * This is the action to handle external exceptions.
      */
     public function actionError() {
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/HomeFiles/css/Home.css');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/HomeFiles/js/Home.js');
+
         if ($error = Yii::app()->errorHandler->error) {
-            
+
 
             if (Yii::app()->request->isAjaxRequest)
                 echo $error['message'];
@@ -84,20 +86,19 @@ class SiteController extends Controller {
      * Displays the contact page
      */
     public function actionContact() {
-        
-        if(isset($_POST['ajax']) && $_POST['ajax']==='contact-form')
-          {
-          echo CActiveForm::validate($model);
-          Yii::app()->end();
-          }
-          
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'contact-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
         $this->layout = "//layouts/no_navi";
         $model = new ContactForm;
         if (isset($_POST['ContactForm'])) {
             $model->attributes = $_POST['ContactForm'];
             if ($model->validate()) {
                 $headers = "From: {$model->email}\r\nReply-To: {$model->email}";
-                
+
 //                $email = Yii::app()->email;
 //$email->to = 'fkzeal@163.com';
 //$email->subject =  $model->subject;
@@ -199,7 +200,7 @@ class SiteController extends Controller {
         }
         $this->render('UserForm', array('model' => $model));
     }
-    
+
 //jia mi
     public function encrypt($value) {
         return md5($value);
@@ -223,79 +224,72 @@ class SiteController extends Controller {
             $model->attributes = $_POST['User'];
 
 //            if ($model->validate(FALSE)) {
-                // form inputs are valid, do something here
-                $user->attributes = $_POST['User'];
+            // form inputs are valid, do something here
+            $user->attributes = $_POST['User'];
 //                $user->UserPassword = $this->encrypt($user->UserPassword);
-                if ($user->save(false)) {
-                    Yii::app()->user->logout();
+            if ($user->save(false)) {
+                Yii::app()->user->logout();
 
-                    $this->redirect(array('login'));
-                }
+                $this->redirect(array('login'));
+            }
 //            }
         }
         $this->render('ManageInfo', array('model' => $model, 'user' => $user));
     }
-    
-    
-    public function actionDownLoad()
-	{
-        if (isset ($_POST['pid'])) {
+
+    public function actionDownLoad() {
+        if (isset($_POST['pid'])) {
             $project_id = $_POST['pid'];
         }
-        
-        if (isset ($_POST['type'])) {
+
+        if (isset($_POST['type'])) {
             $type = $_POST['type'];
         }
-        
-		if($type === 1||$type == 'app'||$type == 'a')
-			$project_type="app";
-		else
-			$project_type="code";
+
+        if ($type === 1 || $type == 'app' || $type == 'a')
+            $project_type = "app";
+        else
+            $project_type = "code";
 
 
-		$dir_name = yii::app()->basePath."/data/"."$project_id/".$project_type;
-		$dir_handle = opendir($dir_name) or die("can't open ".$dir_name);
+        $dir_name = yii::app()->basePath . "/data/" . "$project_id/" . $project_type;
+        $dir_handle = opendir($dir_name) or die("can't open " . $dir_name);
 
-		while($file_name = readdir($dir_handle))
-		{
-			if($file_name === "."||$file_name === "..")
-				continue;
+        while ($file_name = readdir($dir_handle)) {
+            if ($file_name === "." || $file_name === "..")
+                continue;
 
-				$file_path = $dir_name."/".$file_name;
-
-				
-				if(!file_exists($file_path)){
-				
-					return fasle;
-				}
-				$file_size = filesize($file_path);
-									
-				//utf 8 to gbk				
-				header("Content-type: application/octet-stream;charset=utf-8");
-				header("Accept-Ranges: bytes");
-				header("Accept-Length: $file_size");
-				header("Content-Disposition: attachment; filename=".$file_name);
-				ob_flush();
-				$fp = fopen($file_path,"r");
-				$buffer_size = 1024;
-				$cur_pos = 0;
-				while(!feof($fp)&&$file_size-$cur_pos>$buffer_size)
-				{										        
-					$buffer = fread($fp,$buffer_size);
-					echo $buffer;
-					$cur_pos += $buffer_size;
-				}
-				$buffer = fread($fp,$file_size-$cur_pos);
-				echo $buffer;
-				fclose($fp);
-                echo 'success';
-				return true;
-		}
-
-	return false;
-	
-	}
+            $file_path = $dir_name . "/" . $file_name;
 
 
+            if (!file_exists($file_path)) {
+
+                return fasle;
+            }
+            $file_size = filesize($file_path);
+
+            //utf 8 to gbk				
+            header("Content-type: application/octet-stream;charset=utf-8");
+            header("Accept-Ranges: bytes");
+            header("Accept-Length: $file_size");
+            header("Content-Disposition: attachment; filename=" . $file_name);
+            ob_flush();
+            $fp = fopen($file_path, "r");
+            $buffer_size = 1024;
+            $cur_pos = 0;
+            while (!feof($fp) && $file_size - $cur_pos > $buffer_size) {
+                $buffer = fread($fp, $buffer_size);
+                echo $buffer;
+                $cur_pos += $buffer_size;
+            }
+            $buffer = fread($fp, $file_size - $cur_pos);
+            echo $buffer;
+            fclose($fp);
+            echo 'success';
+            return true;
+        }
+
+        return false;
+    }
 
 }

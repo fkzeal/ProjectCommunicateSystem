@@ -14,12 +14,20 @@ class DetailListController extends Controller {
         $type = Yii::app()->request->getParam('type');
         $category = Yii::app()->request->getParam('category');
         $projectid = Yii::app()->request->getParam('projectid');
-        $categoryInfo = CategoryInfo::model()->with('appCodeCategory')->findAll('FirstLevel=:FirstLevel And Flag=:f', 
+        $categoryID = CategoryInfo::model()->findAll('FirstLevel=:FirstLevel And Flag=:f', 
                 array(':FirstLevel' => $category,':f'=>$type));
 
-        if (!empty($categoryInfo)) {
-            $cate = $categoryInfo[0];
-
+        if (!empty($categoryID)) {
+            $cateID = $categoryID[0]->ID;
+            if($type == 'c'){
+                $projectItem = ProjectCode::model()->findAllByAttributes(array(
+                    'CategoryID'=>$cateID
+                ));
+            }  else {
+                $projectItem = ProjectApp::model()->findALLByAttributes(array(
+                    'CategoryID'=>$cateID
+                ));
+            }
 //            $projectid = $cateid->appCodeCategory;
 //            if (!empty($projectid)) {
 //                foreach ($projectid as $value) {
@@ -40,7 +48,8 @@ class DetailListController extends Controller {
         }
 
         $this->render('list',array(
-            'cate'=>$cate,'type'=>$type,'category'=>$category,'projectid'=>$projectid
+            'cate'=>$cate,'type'=>$type,'category'=>$category,'projectid'=>$projectid,
+            'projectItem'=>$projectItem
         ));
     }
 

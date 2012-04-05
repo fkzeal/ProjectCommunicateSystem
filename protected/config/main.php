@@ -80,6 +80,6 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'fkzeal@163.com',
+        'adminEmail' => '1762724236@qq.com',
     ),
 );

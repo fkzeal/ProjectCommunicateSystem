@@ -60,15 +60,15 @@
             <!--detail-->
             <div class="tab-pane active" id="cat-detail">
                 <?php
-                $projectid = $cate->appCodeCategory;
-                if (!empty($projectid)) {
-                    foreach ($projectid as $value) {
-
+//                $projectid = $cate->appCodeCategory;
+                if (!empty($projectItem)) {
+                    
+                    foreach ($projectItem as $value) {
+                        $project = $value->project;
                         $downloadUrl = Yii::app()->createUrl('site/download',
                             						array(
 					      'pid'=>$project[ID],'type'=>$type
 					));
-                        $project = $value->project;
                         switch ($type) {
                             case 'c':
                                 $item = $project->projectCodes;
@@ -94,7 +94,7 @@
                     <li><a href="'.$url.'"><img src="'.$project->ProjectIconPath.'" alt="code-img" /></a></li>           	
                     <li class="category-item-name page-header">
                     <a href="'.$url.'"><span>'.$project->ProjectName.'</span></a></li>
-                    <li>'.$project->ProjectDescription.'</li>
+                    <li><p>'.$project->ProjectDescription.'</p></li>
                     <li class="category-item-grade">下载次数：<span>'.$downloadTimes.'</span></li>
                     <li class="category-item-comments">评论数：<span>'.$count.'</span></li>
                     <a href="'.$downloadUrl.'" class="btn btn-primary">下 载</a>

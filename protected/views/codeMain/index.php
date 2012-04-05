@@ -32,10 +32,10 @@
             <div class="span10">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#hot-project"><span class="label label-info"><i class="icon-fire"></i> 热门项目</span></a>						  									    
+                        <a data-toggle="tab" href="#hot-project"><span class="label label-info"><i class="icon-fire"></i> 热门源码</span></a>						  									    
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#latest-project"><span class="label label-info"><i class="icon-leaf"></i> 最新项目</span></a>
+                        <a data-toggle="tab" href="#latest-project"><span class="label label-info"><i class="icon-leaf"></i> 最新源码</span></a>
                     </li>						 
                 </ul>
                 <div class="tab-content">

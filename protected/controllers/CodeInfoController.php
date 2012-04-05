@@ -43,7 +43,8 @@ class CodeInfoController extends Controller {
                 throw new CHttpException(404, '此项目没有对应的代码可供下载或查看');
             }
         }
-        $category = AppCodeCategory::model()->with('category')->find(
+        
+        $category = ProjectCode::model()->with('category')->find(
                 "ProjectID=:projectid AND Flag=:f", array(
             ':projectid' => $projectid,
             ':f' => 'c'
@@ -77,9 +78,9 @@ class CodeInfoController extends Controller {
           $tag[] = $value->tag;
           }
           } */
-        $tag = AppCodeTag::model()->with('tag')->findAll(
-                "ProjectID=:projectid AND Flag=:f", array(
-            ':projectid' => $projectid,
+        $tag = CodeTag::model()->with('tag')->findAll(
+                "CodeID=:CodeID AND Flag=:f", array(
+            ':CodeID' => $project->projectCodes[ID],
             ':f' => 'c'
                 )
         );
