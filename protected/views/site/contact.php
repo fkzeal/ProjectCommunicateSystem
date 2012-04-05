@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 			<div class="span5 offset6">
                             <div class="well">
 <legend>                     
-Contact Us
+联系我们
 </legend>  
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -19,7 +19,8 @@ Contact Us
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+<!--If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.-->
+如果您有任何使用上的疑问，或任何建设性的意见，或者使用上感到非常不爽，都可以填写下表，通过邮件告知我们，意见被采纳者将会获得奖励。谢谢
 </p>
 
 
@@ -34,8 +35,8 @@ If you have business inquiries or other questions, please fill out the following
 //    'htmlOptions'=>array('class'=>'well',),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
+<!--	<p class="note">Fields with <span class="required">*</span> are required.</p>-->
+<hr/>
 	<?php 
         if( ($form->errorSummary($model) !== '')){
 //            echo"<p style='color:#EE0000'>表单填写错误</p>";
@@ -101,7 +102,9 @@ If you have business inquiries or other questions, please fill out the following
 	<?php endif; ?>
 <br/>
 <!--	<div class="row buttons">-->
-		<?php echo CHtml::submitButton('Submit'); ?>
+		<?php echo CHtml::submitButton('发送邮件',array(
+                    'class'=>'btn btn-primary'
+                )); ?>
 <!--	</div>-->
 
 <?php $this->endWidget(); ?>

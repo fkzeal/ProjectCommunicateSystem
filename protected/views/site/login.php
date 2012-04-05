@@ -1,29 +1,3 @@
-<?php
-$this->pageTitle=Yii::app()->name . ' - Login';
-//        Yii::app()->user->logout();
-?>
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<link rel="stylesheet" type="text/css" href="/~FK/testdrive/GlobalFiles/global.css" />
-
-<title>Sign in</title> 
-<link type="text/css" rel="stylesheet" href="GlobalFiles/global.css" /> 
-
-<style>table {font-family: tahoma; font-size: 12px}</style>
-</head> 
-<body> 
-    <div id="header"> 
-        <div id="top-header">	
-            <p id="username">您好！</p> 
-            <a href="" class="btn" >应用首页</a> 
-            <a href="" class="btn" id="logout">退出</a>            
-      </div> 
-        <img alt="logo" src="GlobalFiles/logo.png" id="logo" /> 
-    </div> -->
-
-<!--<button href =" "></button>-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,7 +112,9 @@ $this->pageTitle=Yii::app()->name . ' - Login';
                 <?php echo $form->textField($model,'username',array(
                     'class'=>'input-xlarge span4',  'required'=>'required'
                 )); ?>
-		<?php echo $form->error($model,'username'); ?>
+		<?php echo $form->error($model,'username',array(
+                    'style'=>'color: #EE0000',  
+                )); ?>
             <a style="color: #EE0000"></a>
 
 		<?php echo $form->labelEx($model,'password',array(
