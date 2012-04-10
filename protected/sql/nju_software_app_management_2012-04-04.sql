@@ -12,6 +12,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 # Dumping database structure for nju_software_app_management
+-- create user if not exist
+grant all on nju_software_app_management.* to '123'@'localhost' identified by 'nju123';
 DROP DATABASE IF EXISTS `nju_software_app_management`;
 CREATE DATABASE IF NOT EXISTS `nju_software_app_management` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `nju_software_app_management`;
