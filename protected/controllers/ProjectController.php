@@ -41,16 +41,16 @@ class ProjectController extends Controller {
                 if (!is_dir($bashPath)) {
                     mkdir($basePath, 0777, true);
                 }
-                
-                $iconpath = YiiBase::getPathOfAlias('webroot').DIRECTORY_SEPARATOR . 'Icon' . DIRECTORY_SEPARATOR . $project->ID . DIRECTORY_SEPARATOR;
+
+                $iconpath = YiiBase::getPathOfAlias('webroot') . DIRECTORY_SEPARATOR . 'Icon' . DIRECTORY_SEPARATOR . $project->ID . DIRECTORY_SEPARATOR;
                 if (!is_dir($iconpath)) {
                     mkdir($iconpath, 0777, true);
                 }
-                
-                $readPath = 'Icon' .DIRECTORY_SEPARATOR. $project->ID . DIRECTORY_SEPARATOR.$project->ProjectName . '.' . pathinfo($project->ProjectIcon, PATHINFO_EXTENSION);
+
+                $readPath = 'Icon' . DIRECTORY_SEPARATOR . $project->ID . DIRECTORY_SEPARATOR . $project->ProjectName . '.' . pathinfo($project->ProjectIcon, PATHINFO_EXTENSION);
                 $projectIconPath = $iconpath . $project->ProjectName . '.' . pathinfo($project->ProjectIcon, PATHINFO_EXTENSION);
                 $project->ProjectIcon->saveAs($projectIconPath);
-                
+
                 $project->ProjectIconPath = $readPath;
                 $project->save(false);
 
@@ -75,13 +75,44 @@ class ProjectController extends Controller {
         $this->render('create', array('project' => $project, 'app' => $app, 'code' => $code));
     }
 
+    public function actionView() {
+        //$uid = Yii::app()->user->getState('id');		
+        if (!empty($_GET['uid']))
+            $uid = $_GET['uid'];
+        else
+            $uid = Yii::app()->user->getState('id');
+
+
+        $user = User::model()->find(//实际显示的用户
+                "ID=:Flag", array(":Flag" => $uid)
+        );
+
+        $project_passed = Project::model()->with('projectApps', 'projectCodes')->findall("UserID=:userid AND ProjectStatus=:f", array(
+            ':userid' => $uid,
+            ':f' => '1'
+                ));         //实际显示用户的上传已经通过项目
+
+
+        $project_verifing = Project::model()->with('projectApps', 'projectCodes')->findall("UserID=:userid AND ProjectStatus=:f", array(
+            ':userid' => $uid,
+            ':f' => '0'
+                ));          //实际显示用户的上传未通过项目
+
+
+        $this->render('view', array(
+            'user' => $user,
+            'project_passed' => $project_passed,
+            'project_verifing' => $project_verifing
+        ));
+    }
+
     protected function performAjaxValidation($project, $app, $code) {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'create_project_form') {
             echo CActiveForm::validate($project);
             echo CActiveForm::validate($app);
             echo CActiveForm::validate($code);
             Yii::app()->end();
-        }     
+        }
     }
 
     public function filters() {
@@ -93,13 +124,14 @@ class ProjectController extends Controller {
     public function accessRules() {
         return array(
             array('allow',
-                  'actions'=>array('create'),
-                  'users'=>array('@'),
+//                'actions' => array('create'),
+                'users' => array('@'),
             ),
             array('deny',
-                  'actions'=>array('create'),
-                  'users'=>array('*'),
+//                'actions' => array('create'),
+                'users' => array('*'),
             ),
         );
     }
+
 }

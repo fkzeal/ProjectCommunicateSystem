@@ -105,6 +105,7 @@
 
             <fieldset>
                 <legend>用户登录</legend>
+
                 <div class="control-group">
 
                     <?php
@@ -130,59 +131,29 @@
                         'class' => 'control-label'
                     ));
                     ?>
-                    <!--            </td>
-                                <td style="text-align:left; font-size:20px;">-->
                     <?php
                     echo $form->passwordField($model, 'password', array(
                         'class' => 'input-xlarge span4', 'required' => 'required'
                     ));
                     ?>
-                    <!--                </td>
-                                    <td style="text-align:left; font-size:16px; color:red;">-->
                     <?php
                     echo $form->error($model, 'password', array(
                         'style' => 'color: #EE0000',
                     ));
                     ?>
-                    <!--                    </td>
-                            </tr>	-->
                 </div>
 
-<!--	<tr> 
-        <td colspan="3">&nbsp;</td> 
-    </tr>
-    
-    <tr>
-        <td></td>
-        <td><div class="errorMessage" id="LoginForm_rememberMe_em_" style="display:none"></div></td>
-    <td style="text-align:right; font-size:18px;" >-->
                 <label class="checkbox" for="LoginForm_rememberMe">
                     <?php echo $form->checkBox($model, 'rememberMe'); ?> 记住我 
-<!--                   <a style="margin-left: 120px" href="<?php echo Yii::app()->createUrl('site/register'); ?>">还没有账号?</a>-->
 
                 </label>
-                <?php //echo $form->checkBox($model,'rememberMe');  ?>
-                <?php
-//                echo $form->label($model,'rememberMe',array(
-//                    'class'=>'control-label'
-//                )); 
-                ?>
-
-                <!--        </td>-->
-                <!--</tr>
-                        <tr> 
-                        <td colspan="3">&nbsp;</td> 
-                    </tr>
-                    
-                    <tr><td colspan="3" style="font-size:18px;">-->
+                <br/>
                 <button class="btn btn-primary" type="submit">
                     <i class="icon-user"></i>登录
                 </button>
-                <!--                                           </td>
-                    </tr>
-                   
-                
-                    <tr><td colspan="3" style="font-size:18px;">-->
+                <hr>
+
+                <p style="color:#0e509e">请使用tss账号及密码，如somebody09</p>
             </fieldset>
             <?php $this->endWidget(); ?>
         </div>

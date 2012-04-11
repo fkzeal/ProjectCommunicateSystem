@@ -93,7 +93,9 @@
                         <i class="icon-home"></i>应用市场</a></li>
                 <li ><a href="<?php echo Yii::app()->createUrl('codemain/index'); ?>">
                         <i class="icon-list"></i>源码社区</a></li>
-                <li ><a href="<?php echo Yii::app()->createUrl('project/view'); ?>">
+                <li ><a href="<?php echo Yii::app()->createUrl('project/view',array(
+                    'uid'=>Yii::app()->user->getState('id')
+                )); ?>">
                         <i class="icon-book"></i>我的项目</a></li>
                 <li ><a href="<?php echo Yii::app()->createUrl('project/create'); ?>">
                         <i class="icon-star"></i>创建项目</a></li>															

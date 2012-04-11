@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
-<p>
+                                <p style="color:#004099">
 <!--If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.-->
 如果您有任何使用上的疑问，或任何建设性的意见，或者使用上感到非常不爽，都可以填写下表，通过邮件告知我们，意见被采纳者将会获得奖励。谢谢
 </p>

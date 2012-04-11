@@ -246,11 +246,11 @@ class SiteController extends Controller {
             $type = $_POST['type'];
         }
 
-        if ($type === 1 || $type == 'app' || $type == 'a')
+        if ($type === 1 || $type == 'app' || $type == 'a') {
             $project_type = "app";
-        else
+        } else {
             $project_type = "code";
-
+        }
 
         $dir_name = yii::app()->basePath . "/data/" . "$project_id/" . $project_type;
         $dir_handle = opendir($dir_name) or die("can't open " . $dir_name);
@@ -285,7 +285,25 @@ class SiteController extends Controller {
             $buffer = fread($fp, $file_size - $cur_pos);
             echo $buffer;
             fclose($fp);
+            
+            if ($project_type == "app") {
+
+                $projectItem = ProjectApp::model()->findByAttributes(array(
+                    'ProjectID' => $project_id
+                        ));
+                $projectItem->AppDownloadTimes += 1;
+                $projectItem->save(false);
+            } else {
+
+                $projectItem = ProjectCode::model()->findByAttributes(array(
+                    'ProjectID' => $project_id
+                        ));
+                $projectItem->CodeDownloadTimes += 1;
+                $projectItem->save(false);
+            }
+
             echo 'success';
+
             return true;
         }
 
