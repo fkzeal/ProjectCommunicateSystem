@@ -65,7 +65,7 @@
 								                    <form id=\"download\" name=\"download\" method=\"post\" action=\"$downloadUrl\" >
                                                                                             <input name =\"type\" value=\"c\" type=\"hidden\" /> 
                                                                                             <input name=\"pid\" value='$project->ID' type='hidden'/>
-                                                                                            <button type='submit' class='btn btn-primary'>下载应用</button>  
+                                                                                            <button type='submit' class='btn btn-primary'>下载代码</button>  
                                                                                             </form>
 								                </div>
 								            </div>							      
@@ -101,7 +101,7 @@
 								                    <form id=\"download\" name=\"download\" method=\"post\" action=\"$downloadUrl\" >
                                                                                         <input name =\"type\" value=\"c\" type=\"hidden\" /> 
                                                                                         <input name=\"pid\" value='$pro->ID' type='hidden'/>
-                                                                                        <button type='submit' class='btn btn-primary'>下载应用</button>  
+                                                                                        <button type='submit' class='btn btn-primary'>下载代码</button>  
                                                                                         </form>							           	  
 								                </div>
 								            </div>							      

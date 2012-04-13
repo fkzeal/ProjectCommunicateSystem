@@ -45,12 +45,7 @@
                 <h3 class="page-header" id="item-name"><?php echo $project['ProjectName']; ?></h3>
                 <ul class="detail-preview-list">
 <!--                        <li>评分：<span id="item-grade"><?php echo $project->projectCodes['CodeScore']; ?></span></li>-->
-                    <li>评论数：<span id="item-comment-qty">
-                            <?php
-                            echo $count;
-                            ?></span></li>
-                    <li>项目大小：<span >12.5</span>M</li>
-                    <li>上传日期：<span><?php echo $project->ProjectCreatedTime; ?></span></li>
+                    <li>团队名称：<span ><?php echo $project->TeamName; ?></span></li>
                     <li>上传者：<span >
                             <?php
                             $uploadUser = $project->user['NickName'];
@@ -63,6 +58,14 @@
                             }
                             ?>
                         </span></li>
+                        <li>上传日期：<span><?php echo $project->ProjectCreatedTime; ?></span></li>
+                    <li>项目大小：<span >12.5</span>M</li>
+                    <li>评论数：<span id="item-comment-qty">
+                            <?php
+                            echo $count;
+                            ?></span></li>
+                    
+                    
                     <li>资源类别：<span>
                             <?php
                             echo $category->category['FirstLevel'];

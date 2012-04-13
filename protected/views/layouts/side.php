@@ -27,7 +27,7 @@
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/bootstrap/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->baseUrl;?>/GlobalFiles/js/global.js"></script>
     
-    <title>Project Management System</title>
+    <title>Project Share System</title>
 </head>
 <body>
        

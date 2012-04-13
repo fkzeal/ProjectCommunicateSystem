@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Application',
+    'name' => 'Project Share Sytem',
     'language'=>'zh_CN',
     
     // preloading 'log' component
