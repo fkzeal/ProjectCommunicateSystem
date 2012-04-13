@@ -2,6 +2,12 @@
 
 class ProjectController extends Controller {
 
+    public function init() {
+        parent::init();
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . "/MyAppFiles/MyApp.css");
+//        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . "/MyAppFiles/js/Info.js");
+    }
+
     public function actionCreate() {
         $project = new Project;
         $app = new ProjectApp;
