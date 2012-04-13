@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a> 
-                <a class="brand" href="#">欢迎光临PMS！</a>
+                <a class="brand" href="#">欢迎光临PSS！</a>
                 <div class="nav-collapse"> 						    							
                     <ul class="nav pull-right">
                         <li ><a href="<?php echo Yii::app()->createUrl('apphome/index'); ?>" >

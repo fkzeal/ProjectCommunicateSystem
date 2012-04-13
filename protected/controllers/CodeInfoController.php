@@ -12,7 +12,6 @@ class CodeInfoController extends Controller {
 //        $this->layout = "//layouts/column1";
         $id = Yii::app()->user->getState('id');
         $projectid = $_GET['projectid'];
-//           $this->redirect($this->createUrl('View'));
 
         if (empty ($projectid)) {
             $this->redirect(Yii::app()->createUrl('codemain/index'));
@@ -23,17 +22,9 @@ class CodeInfoController extends Controller {
         //find the comment table where the flag=c and eager find the relation user
 
         $project = Project::model()->with('projectCodes', 'user')->findByPk($projectid);
-        /* $categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
-          'ProjectID' => $projectid
-          ));
-          foreach ($categoryID as $value) {
-          if ($value->category['Flag'] == 'c') {
-          $category = $value->category;
-          }
-          } */
+
         if (!isset($project)) {
 
-//            Yii::app()->errorHandler->error->message = '44444';
             throw new CHttpException(404, '此项目不存在');
         } else {
             $codeExist = ProjectCode::model()->findByAttributes(array('ProjectID' => $projectid));
@@ -44,15 +35,15 @@ class CodeInfoController extends Controller {
             }
         }
         
-        $category = ProjectCode::model()->with('category')->find(
-                "ProjectID=:projectid AND Flag=:f", array(
-            ':projectid' => $projectid,
-            ':f' => 'c'
+        $categoryCode = ProjectCode::model()->find(
+                "ProjectID=:projectid", array(
+            ':projectid' => $projectid
                 )
         );
 
-        //$category = CategoryInfo::model()->findByPk($category->CategoryID);
-        //$categoryID[] = $category->category[SecondLevel];
+		$categoryID = $categoryCode->CategoryID;
+		$category = CategoryInfo::model()->findByPk($categoryID);
+		
 
         $comment = ProjectComment::model()->with('user')->findAllByAttributes(array(
             'ProjectID' => $projectid, 'Flag' => 'c'
@@ -80,7 +71,7 @@ class CodeInfoController extends Controller {
           } */
         $tag = CodeTag::model()->with('tag')->findAll(
                 "CodeID=:CodeID AND Flag=:f", array(
-            ':CodeID' => $project->projectCodes[ID],
+            ':CodeID' => $project->projectCodes->ID,
             ':f' => 'c'
                 )
         );

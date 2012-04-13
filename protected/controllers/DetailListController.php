@@ -48,7 +48,7 @@ class DetailListController extends Controller {
         }
 
         $this->render('list',array(
-            'cate'=>$cate,'type'=>$type,'category'=>$category,'projectid'=>$projectid,
+            'type'=>$type,'category'=>$category,'projectid'=>$projectid,
             'projectItem'=>$projectItem
         ));
     }

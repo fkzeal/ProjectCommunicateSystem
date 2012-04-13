@@ -30,9 +30,9 @@
                 
                 foreach ($categoryInfo as $item) {
                     $categoryUrl = Yii::app()->createUrl('detaillist/list',array(
-                    'type'=>$type,'category'=>$item[FirstLevel],'projectid'=>$projectid
+                    'type'=>$type,'category'=>$item->FirstLevel,'projectid'=>$projectid
                 ));
-                    echo "<li><a href='$categoryUrl'>$item[FirstLevel]</a></li>";
+                    echo "<li><a href='$categoryUrl'>$item->FirstLevel</a></li>";
                     echo "<li class=\"divider\"></li>";
                 }
                 $typeTag = $type == 'c'?"code":"app";
@@ -67,7 +67,7 @@
                         $project = $value->project;
                         $downloadUrl = Yii::app()->createUrl('site/download',
                             						array(
-					      'pid'=>$project[ID],'type'=>$type
+					      'pid'=>$project->ID,'type'=>$type
 					));
                         switch ($type) {
                             case 'c':
@@ -75,7 +75,7 @@
                                 $downloadTimes = $item->CodeDownloadTimes;
                                 $url = Yii::app()->createUrl('codeinfo/index',
                             						array(
-					      'projectid'=>$project[ID]
+					      'projectid'=>$project->ID
 					));
                                 break;
                             case 'a':
@@ -83,7 +83,7 @@
                                 $downloadTimes = $item->AppDownloadTimes;
                                 $url = Yii::app()->createUrl('appinfo/index',
                             						array(
-					      'projectid'=>$project[ID]
+					      'projectid'=>$project->ID
 					));
                                 break;
                             

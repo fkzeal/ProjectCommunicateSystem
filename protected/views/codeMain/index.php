@@ -14,9 +14,9 @@
                 
                 foreach ($category as $item) {
                     $categoryUrl = Yii::app()->createUrl('detaillist/list',array(
-                    'type'=>'c','category'=>$item[FirstLevel],'projectid'=>$projectid
+                    'type'=>'c','category'=>$item->FirstLevel,'projectid'=>$projectid
                 ));
-                    echo "<li><a href='$categoryUrl'>$item[FirstLevel]</a></li>";
+                    echo "<li><a href='$categoryUrl'>$item->FirstLevel</a></li>";
                     echo "<li class=\"divider\"></li>";
                 }
                 $return = Yii::app()->createUrl('codeinfo/index', array('projectid' => $projectid));

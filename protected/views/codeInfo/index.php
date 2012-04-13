@@ -16,9 +16,9 @@
                 
                 foreach ($categoryInfo as $item) {
                     $categoryUrl = Yii::app()->createUrl('detaillist/list',array(
-                    'type'=>'c','category'=>$item[FirstLevel],'projectid'=>$projectid
+                    'type'=>'c','category'=>$item->FirstLevel,'projectid'=>$projectid
                 ));
-                    echo "<li><a href='$categoryUrl'>$item[FirstLevel]</a></li>";
+                    echo "<li><a href='$categoryUrl'>$item->FirstLevel</a></li>";
                     echo "<li class=\"divider\"></li>";
                 }
                 $return = Yii::app()->createUrl('codeinfo/index', array('projectid' => $projectid));
@@ -68,9 +68,9 @@
                     
                     <li>资源类别：<span>
                             <?php
-                            echo $category->category['FirstLevel'];
-                            if (isset($category->category['SecondLevel'])) {
-                                echo " " . $category->category['SecondLevel'];    //显示FirstLevel  SecondLevel，之间加个空格
+                            echo $category->FirstLevel;
+                            if (isset($category->SecondLevel)) {
+                                echo " " . $category->SecondLevel;    //显示FirstLevel  SecondLevel，之间加个空格
                             }
                             ?>
                         </span></li>

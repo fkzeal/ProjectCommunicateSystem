@@ -53,9 +53,7 @@ class AppInfoController extends Controller {
         //find the comment table where the flag=c and eager find the relation user
 
         $project = Project::model()->with('projectApps', 'user')->findByPk($projectid);
-//        $categoryID = AppCodeCategory::model()->with('category')->findAllByAttributes(array(
-//            'ProjectID' => $projectid
-//                ));                        
+                     
         $category = ProjectApp::model()->with('category')->find(
                 "ProjectID=:projectid AND Flag=:f", array(
             ':projectid' => $projectid,
@@ -88,7 +86,7 @@ class AppInfoController extends Controller {
 //        }
         $tag = AppTag::model()->with('tag')->findAll(
                 "AppID=:AppID AND Flag=:f", array(
-            ':AppID' => $project->projectApps[ID],
+            ':AppID' => $project->projectApps->ID,
             ':f' => 'a'
                 )
         );

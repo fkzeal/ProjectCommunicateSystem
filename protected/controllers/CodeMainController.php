@@ -63,7 +63,8 @@ class CodeMainController extends Controller {
 					'hotest'=>$hotest,
 					'newest'=>$newest,
 					'commentHotest'=>$commentHotest,
-					'commentNewest'=>$commentNewest
+					'commentNewest'=>$commentNewest,
+					'projectid' => ''
 					));
 	
 

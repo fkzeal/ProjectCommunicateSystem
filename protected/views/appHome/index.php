@@ -10,7 +10,7 @@
                 <?php
                 foreach ($category as $item) {
                     $categoryUrl = Yii::app()->createUrl('detaillist/list', array(
-                        'type' => 'a', 'category' => $item[FirstLevel], 'projectid' => $projectid
+                        'type' => 'a', 'category' => $item->FirstLevel, 'projectid' => $projectid
                             ));
                     echo "<li><a href='$categoryUrl'>$item[FirstLevel]</a></li>";
                     echo "<li class=\"divider\"></li>";
