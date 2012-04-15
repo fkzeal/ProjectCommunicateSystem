@@ -7,6 +7,7 @@
  * @property integer $ID
  * @property string $ProjectName
  * @property integer $ProjectStatus
+ * @property string $ProjectSummary
  * @property string $ProjectDescription
  * @property string $ProjectCreatedTime
  * @property string $ProjectIconPath
@@ -48,13 +49,14 @@ class Project extends CActiveRecord {
             array('ProjectStatus, UserID', 'numerical', 'integerOnly' => true),
             array('ProjectName', 'length', 'max' => 30),
             array('ProjectIconPath', 'length', 'max' => 40),
-            array('ProjectName, ProjectDescription, ProjectIcon', 'required'),
+            array('ProjectName, ProjectSummary, ProjectIcon', 'required'),
+            array('ProjectDescription', 'required', 'enableClientValidation'=>false),
       			array('ProjectIcon', 'unsafe'),
       			array('ProjectIcon', 'file',
       				  'types'=>'jpg, gif, png',
                         'allowEmpty' => false,
       				  'maxSize'=>1024*1024*1),
-			      array('ProjectName, ProjectDescription', 'safe', 'on'=>'search')
+			      array('ProjectName, ProjectSummary, ProjectDescription', 'safe', 'on'=>'search')
         );
     }
 
@@ -81,6 +83,7 @@ class Project extends CActiveRecord {
             'ProjectName' => '项目名称',
             'TeamName' => '团队名称',
             'ProjectStatus' => '项目状态',
+            'ProjectSummary' => '项目简介',
             'ProjectDescription' => '项目描述',
             'ProjectCreatedTime' => '项目创建时间',
             'ProjectIconPath' => '项目图标路径',
@@ -102,6 +105,7 @@ class Project extends CActiveRecord {
         $criteria->compare('ID', $this->ID);
         $criteria->compare('ProjectName', $this->ProjectName, true);
         $criteria->compare('ProjectStatus', $this->ProjectStatus);
+        $criteria->compare('ProjectSummary', $this->ProjectSummary, true);
         $criteria->compare('ProjectDescription', $this->ProjectDescription, true);
         $criteria->compare('ProjectCreatedTime', $this->ProjectCreatedTime, true);
         $criteria->compare('ProjectIconPath', $this->ProjectIconPath, true);

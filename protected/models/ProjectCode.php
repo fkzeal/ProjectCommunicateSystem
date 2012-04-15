@@ -46,8 +46,9 @@ class ProjectCode extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('CodeDescription, CodeFragment, CategoryID, CodeFile', 'required'),
+			array('CategoryID, CodeFile', 'required'),
 			array('CodeDescription, CodeFragment', 'safe'),
+			array('CodeDescription, CodeFragment', 'required', 'enableClientValidation'=>false),
             array('CodeFile', 'unsafe'),
 			array('CodeFile', 'file', 
 				  'types'=>'zip,rar',

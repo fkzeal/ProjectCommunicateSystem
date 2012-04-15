@@ -25,3 +25,13 @@
 	font-size: 11px;
 	display: block;
 }
+
+#Project_ProjectSummary
+{
+	width: 500px;
+}
+
+.errorMessage
+{
+	color: red;
+}

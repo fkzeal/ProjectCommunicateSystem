@@ -16,7 +16,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <fieldset>
 <legend>项目总信息</legend>
 <div id="project_form">
-    <?php echo $form->errorSummary(array($project, $app, $code)); ?>
+    <?php echo $form->errorSummary(array($project), NULL, NULL, array('class'=>'alert alert-error')); ?>
     <div>
         <?php echo $form->labelEx($project, 'ProjectName'); ?>
         <?php echo $form->textField($project, 'ProjectName'); ?>
@@ -26,6 +26,11 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo $form->labelEx($project, 'TeamName'); ?>
         <?php echo $form->textField($project, 'TeamName'); ?>
         <?php echo $form->error($project, 'TeamName'); ?>
+    </div>
+    <div>
+        <?php echo $form->labelEx($project, 'ProjectSummary'); ?>
+        <?php echo $form->textField($project, 'ProjectSummary'); ?>
+        <?php echo $form->error($project, 'ProjectSummary'); ?>
     </div>
     <div>
         <?php echo $form->labelEx($project, 'ProjectDescription'); ?>
@@ -42,6 +47,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <fieldset>
 <legend>应用信息</legend>
 <div id="app_form">
+    <?php echo $form->errorSummary(array($project), NULL, NULL, array('class'=>'alert alert-error')); ?>
     <div>
         <?php echo $form->labelEx($app, 'AppFile'); ?>
         <?php echo $form->fileField($app, 'AppFile'); ?>
@@ -62,6 +68,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <fieldset>
 <legend>代码信息</legend>
 <div id="code_form">
+    <?php echo $form->errorSummary(array($project), NULL, NULL, array('class'=>'alert alert-error')); ?>
     <div>
         <?php echo $form->labelEx($code, 'CodeDescription'); ?>
         <?php echo $form->textArea($code, 'CodeDescription'); ?>
@@ -90,7 +97,7 @@ $form = $this->beginWidget('CActiveForm', array(
 </div>
 </fieldset>
 <div id="form_submit">
-<?php echo CHtml::submitButton('Create', array('id'=>'project_create_submit')); ?>
+<?php echo CHtml::submitButton('创建', array('id'=>'project_create_submit', 'class'=>"btn btn-primary")); ?>
 </div>
 
 <?php $this->endWidget(); ?>
@@ -113,7 +120,8 @@ $form = $this->beginWidget('CActiveForm', array(
         theme_advanced_buttons3 : "tablecontrols",
         theme_advanced_toolbar_location : "bottom",
         theme_advanced_toolbar_align : "center",
-        theme_advanced_resizing : true
+        theme_advanced_resizing : true,
+        theme_advanced_statusbar_location : "bottom",
     });
 </script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl.'/CreateFiles/js/formToWizard.js' ?>"></script>
